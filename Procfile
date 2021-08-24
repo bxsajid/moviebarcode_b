@@ -1,2 +1,1 @@
-web: gunicorn baseapp.wsgi
-
+web: gunicorn baseapp.wsgi --timeout 0
