@@ -1,0 +1,9 @@
+/output/
+.DS_Store
+.idea
+config.yaml
+/.ipynb_checkpoints/
+/src/__pycache__/
+/output_aus/
+*.png
+nbafinals19/
