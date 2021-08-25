@@ -28,7 +28,10 @@ SECRET_KEY = 'django-insecure-!&vi145*qz$8s#dzpr1t90e9rt&b%#k16$we^54rydwa$92ub4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ 'moviebarcodeapp.herokuapp.com']
+ALLOWED_HOSTS = [
+    'moviebarcodeapp.herokuapp.com',
+    '127.0.0.1'
+]
 
 # Application definition
 
