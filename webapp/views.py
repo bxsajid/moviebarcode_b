@@ -29,13 +29,15 @@ def home(request) -> HttpResponse:
             # check if link is valid YouTube url, otherwise show 422 error
             if not is_valid_youtube_link(youtube_link):
                 form = BarcodeForm()
-                return render(request, 'index.html', {'form': form, 'images': images, 'video_paths': video_paths, 'message': 'Invalid link entered, please try again.'}, status=422)
+                return render(request, 'index.html', {'form': form, 'images': images, 'video_paths': video_paths,
+                                                      'message': 'Invalid link entered, please try again.'}, status=422)
 
             # check if link is online, otherwise show 404 error
             response = requests.head(youtube_link)
             if not response.status_code == 200:
                 form = BarcodeForm()
-                return render(request, 'index.html', {'form': form, 'images': images, 'video_paths': video_paths, 'message': 'Link not found, please try again.'}, status=404)
+                return render(request, 'index.html', {'form': form, 'images': images, 'video_paths': video_paths,
+                                                      'message': 'Link not found, please try again.'}, status=404)
 
             # check if link is video or playlist, in case of playlist loop through all videos
             is_video = True if '/watch?v=' in youtube_link else False
@@ -58,7 +60,8 @@ def home(request) -> HttpResponse:
 
                 # loop through all videos of playlist
                 for playlist_item in playlist_items:
-                    youtube_link = 'https://www.youtube.com/watch?v=' + playlist_item['snippet']['resourceId']['videoId']
+                    youtube_link = 'https://www.youtube.com/watch?v=' + playlist_item['snippet']['resourceId'][
+                        'videoId']
                     image, video_path = process_video(youtube_link, playlist_dir)
                     images.append(image)
                     video_paths.append(video_path)
@@ -112,7 +115,7 @@ def process_video(youtube_link, path) -> tuple:
     video_path = download_video(youtube_link, path)
 
     # create image
-    image = 'output/' + video_path.split('\\')[-1].split('.')[0] + '.png'
+    image = 'C:/Users/bushr/Downloads/generate_moviebarcode-main/static_files/output/' + video_path.split('\\')[-1].split('.')[0] + '.png'
 
     # pass local video path to generate barcode
     vid2barcode(video_path=video_path)
