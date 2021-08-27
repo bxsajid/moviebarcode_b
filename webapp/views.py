@@ -115,7 +115,7 @@ def process_video(youtube_link, path) -> tuple:
     video_path = download_video(youtube_link, path)
 
     # create image
-    image = 'C:/Users/bushr/Downloads/generate_moviebarcode-main/static_files/output/' + video_path.split('\\')[-1].split('.')[0] + '.png'
+    image = 'output/' + video_path.split('\\')[-1].split('.')[0] + '.png'
 
     # pass local video path to generate barcode
     vid2barcode(video_path=video_path)
